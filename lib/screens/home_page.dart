@@ -95,7 +95,7 @@ class _homePageState extends State<homePage> {
             child: Row(
               children: [
                 SmallCard(
-                  colour: inActiveCardColour,
+                  colour: activeCardColour,
                   containerChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -103,16 +103,15 @@ class _homePageState extends State<homePage> {
                         "HEIGHT",
                         style: TextStyle(color: cardTextColor),
                       ),
-                      Text(
-                        sliderValue.toString(),
-                        style: TextStyle(
-                            fontSize: 55, fontWeight: FontWeight.bold),
-                      ),
+                      Text(sliderValue.toString(),
+                          style: TextStyle(
+                              fontSize: 55, fontWeight: FontWeight.bold)),
                       Slider(
+                        activeColor: Color(0xFFea1555),
                         value: sliderValue,
                         min: 0,
                         max: 500,
-                        divisions: 1,
+                        divisions: 500,
                         onChanged: (value) {
                           setState(() {
                             sliderValue = value;
@@ -128,8 +127,8 @@ class _homePageState extends State<homePage> {
           Expanded(
             child: Row(
               children: [
-                SmallCard(colour: inActiveCardColour),
-                SmallCard(colour: inActiveCardColour),
+                SmallCard(colour: activeCardColour),
+                SmallCard(colour: activeCardColour),
               ],
             ),
           ),
@@ -139,7 +138,7 @@ class _homePageState extends State<homePage> {
             color: Color(0xFFea1555),
             margin: const EdgeInsets.only(top: 15),
             child: Center(
-              child: const Text("Calculate"),
+              child: const Text("CALCULATE"),
             ),
           )
         ],
