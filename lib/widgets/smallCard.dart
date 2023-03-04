@@ -9,7 +9,7 @@ class SmallCard extends StatelessWidget {
     return Expanded(
       child: Container(
         child: containerChild,
-        margin: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(13),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: colour,

@@ -25,6 +25,7 @@ class _homePageState extends State<homePage> {
     if (gender == 1) {
       if (maleCardColor == inActiveCardColour) {
         maleCardColor = activeCardColor;
+        femaleCardColor = inActiveCardColour;
       } else {
         maleCardColor = inActiveCardColour;
       }
@@ -32,6 +33,7 @@ class _homePageState extends State<homePage> {
     if (gender == 2) {
       if (femaleCardColor == inActiveCardColour) {
         femaleCardColor = activeCardColor;
+        maleCardColor = inActiveCardColour;
       } else {
         femaleCardColor = inActiveCardColour;
       }
