@@ -3,6 +3,7 @@ import 'package:bmi_app/widgets/smallCard.dart';
 import 'package:bmi_app/widgets/iconContent.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_app/constants/constants.dart';
+import 'results.dart';
 
 const Color cardTextColor = Colors.grey;
 //slider initial value
@@ -226,13 +227,23 @@ class _homePageState extends State<homePage> {
               ],
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: 70,
-            color: Color(0xFFea1555),
-            margin: const EdgeInsets.only(top: 15),
-            child: Center(
-              child: const Text("CALCULATE"),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Results(),
+                ),
+              );
+            },
+            child: Container(
+              width: double.infinity,
+              height: 70,
+              color: Color(0xFFea1555),
+              margin: const EdgeInsets.only(top: 15),
+              child: Center(
+                child: const Text("CALCULATE"),
+              ),
             ),
           )
         ],
