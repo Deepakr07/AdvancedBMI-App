@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:bmi_app/widgets/smallCard.dart';
 import 'package:bmi_app/widgets/iconContent.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_app/constants/constants.dart';
 
-const Color activeCardColour = Color(0XFF1D1F33);
-const Color inActiveCardColour = Color(0XFF111328);
 const Color cardTextColor = Colors.grey;
-const Color activeCardColor = Color(0XFF1D1E33);
 //slider initial value
-double sliderValue = 0;
+double sliderValue = 120;
+int weight = 60, age = 15;
+
+enum Gender { male, female }
+
+Gender? selectedGender;
 
 class homePage extends StatefulWidget {
   const homePage({Key? key}) : super(key: key);
@@ -18,27 +21,7 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
-  Color maleCardColor = inActiveCardColour;
-  Color femaleCardColor = inActiveCardColour;
   //1-male2 female
-  void changeColor(int gender) {
-    if (gender == 1) {
-      if (maleCardColor == inActiveCardColour) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inActiveCardColour;
-      } else {
-        maleCardColor = inActiveCardColour;
-      }
-    }
-    if (gender == 2) {
-      if (femaleCardColor == inActiveCardColour) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inActiveCardColour;
-      } else {
-        femaleCardColor = inActiveCardColour;
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +40,9 @@ class _homePageState extends State<homePage> {
                 Expanded(
                   child: GestureDetector(
                     child: SmallCard(
-                      colour: maleCardColor,
+                      colour: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inActiveCardColour,
                       containerChild: IconContent(
                         iconImage: FontAwesomeIcons.mars,
                         iconText: "MALE",
@@ -65,7 +50,7 @@ class _homePageState extends State<homePage> {
                     ),
                     onTap: () {
                       setState(() {
-                        changeColor(1);
+                        selectedGender = Gender.male;
                       });
                     },
                   ),
@@ -73,7 +58,9 @@ class _homePageState extends State<homePage> {
                 Expanded(
                   child: GestureDetector(
                     child: SmallCard(
-                      colour: femaleCardColor,
+                      colour: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inActiveCardColour,
                       containerChild: IconContent(
                         iconImage: FontAwesomeIcons.venus,
                         iconText: "FEMALE",
@@ -82,7 +69,7 @@ class _homePageState extends State<homePage> {
                     onTap: () {
                       setState(
                         () {
-                          changeColor(2);
+                          selectedGender = Gender.female;
                         },
                       );
                     },
@@ -103,15 +90,24 @@ class _homePageState extends State<homePage> {
                         "HEIGHT",
                         style: TextStyle(color: cardTextColor),
                       ),
-                      Text(sliderValue.toString(),
-                          style: TextStyle(
-                              fontSize: 55, fontWeight: FontWeight.bold)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(sliderValue.toString(), style: cardNumberStyle),
+                          Text(
+                            "cm",
+                            style: TextStyle(color: cardTextColor),
+                          )
+                        ],
+                      ),
                       Slider(
                         activeColor: Color(0xFFea1555),
                         value: sliderValue,
-                        min: 0,
-                        max: 500,
-                        divisions: 500,
+                        min: 120,
+                        max: 220,
+                        divisions: 100,
                         onChanged: (value) {
                           setState(() {
                             sliderValue = value;
@@ -127,8 +123,106 @@ class _homePageState extends State<homePage> {
           Expanded(
             child: Row(
               children: [
-                SmallCard(colour: activeCardColour),
-                SmallCard(colour: activeCardColour),
+                SmallCard(
+                  colour: activeCardColour,
+                  containerChild: Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "WEIGHT",
+                          style: TextStyle(color: cardTextColor),
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: cardNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              backgroundColor: Color(0xff4c4f5e),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              backgroundColor: Color(0xff4c4f5e),
+                              child: Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SmallCard(
+                  colour: activeCardColour,
+                  containerChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "AGE",
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text(
+                        age.toString(),
+                        style: cardNumberStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                            backgroundColor: Color(0xff4c4f5e),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Color(0xff4c4f5e),
+                            child: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
