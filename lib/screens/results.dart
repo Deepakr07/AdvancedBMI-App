@@ -55,6 +55,10 @@ class Results extends StatelessWidget {
                               fontSize: 90,
                               fontWeight: FontWeight.bold),
                         ),
+                        Text(
+                          "You are having normal body weight",
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                   ),
