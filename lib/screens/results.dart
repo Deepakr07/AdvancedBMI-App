@@ -6,8 +6,13 @@ import 'package:bmi_app/widgets/smallCard.dart';
 var bmi;
 
 class Results extends StatelessWidget {
-  const Results({Key? key}) : super(key: key);
-
+  Results(
+      {required this.bmi,
+      required this.resultText,
+      required this.resultInterpretation});
+  final String bmi;
+  final String resultText;
+  final String resultInterpretation;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +50,7 @@ class Results extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Normal",
+                          resultText,
                           style: TextStyle(color: Colors.green),
                         ),
                         Text(
@@ -56,7 +61,7 @@ class Results extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "You are having normal body weight",
+                          resultInterpretation,
                           textAlign: TextAlign.center,
                         ),
                       ],

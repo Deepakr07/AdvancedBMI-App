@@ -146,12 +146,12 @@ class _homePageState extends State<homePage> {
                             FloatingActionButton(
                               onPressed: () {
                                 setState(() {
-                                  weight++;
+                                  weight--;
                                 });
                               },
                               backgroundColor: Color(0xff4c4f5e),
                               child: Icon(
-                                Icons.add,
+                                Icons.remove,
                                 color: Colors.white,
                               ),
                             ),
@@ -161,12 +161,12 @@ class _homePageState extends State<homePage> {
                             FloatingActionButton(
                               onPressed: () {
                                 setState(() {
-                                  weight--;
+                                  weight++;
                                 });
                               },
                               backgroundColor: Color(0xff4c4f5e),
                               child: Icon(
-                                Icons.remove,
+                                Icons.add,
                                 color: Colors.white,
                               ),
                             ),
@@ -197,12 +197,12 @@ class _homePageState extends State<homePage> {
                           FloatingActionButton(
                             onPressed: () {
                               setState(() {
-                                age++;
+                                age--;
                               });
                             },
                             backgroundColor: Color(0xff4c4f5e),
                             child: Icon(
-                              Icons.add,
+                              Icons.remove,
                               color: Colors.white,
                             ),
                           ),
@@ -212,12 +212,12 @@ class _homePageState extends State<homePage> {
                           FloatingActionButton(
                             backgroundColor: Color(0xff4c4f5e),
                             child: Icon(
-                              Icons.remove,
+                              Icons.add,
                               color: Colors.white,
                             ),
                             onPressed: () {
                               setState(() {
-                                age--;
+                                age++;
                               });
                             },
                           )
@@ -236,7 +236,11 @@ class _homePageState extends State<homePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Results(),
+                  builder: (context) => Results(
+                    bmi: calc.calculateBmi(),
+                    resultText: calc.getResult(),
+                    resultInterpretation: calc.getInterpretation(),
+                  ),
                 ),
               );
             },
