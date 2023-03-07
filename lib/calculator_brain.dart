@@ -18,4 +18,13 @@ class CalculatorBrain {
     else
       return 'Underweight';
   }
+
+  String getInterpretation() {
+    if (_bmi >= 25)
+      return 'You have higher weight than normal. Try Exercising more';
+    else if (_bmi > 18.5)
+      return 'You have a normal body Weight Good Job!';
+    else
+      return 'You have low body weight.Eat more nutritious food and gain weight!';
+  }
 }

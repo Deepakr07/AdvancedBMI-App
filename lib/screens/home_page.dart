@@ -1,8 +1,10 @@
+import 'package:bmi_app/calculator_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_app/widgets/smallCard.dart';
 import 'package:bmi_app/widgets/iconContent.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_app/constants/constants.dart';
+import 'results.dart';
 import 'results.dart';
 
 const Color cardTextColor = Colors.grey;
@@ -229,6 +231,8 @@ class _homePageState extends State<homePage> {
           ),
           GestureDetector(
             onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: sliderValue, weight: weight);
               Navigator.push(
                 context,
                 MaterialPageRoute(
